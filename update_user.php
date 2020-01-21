@@ -1,9 +1,10 @@
 <?php
+// ξεκίνα το session του τρέχοντος χρήστη
 	session_start();
-	
+// εισαγωγή στοιχείων σύνδεσης 	
 	include("conf.php");    
 	$conn = new mysqli(HOST,USERNAME,DB_PWD,DATABASE);
-	
+//διαβάζω από τη μέθοδο session	τα στοιχεία σύνδεσης
     $username = $_SESSION['username'];
 	$password = $_SESSION['password'];
 	
@@ -12,6 +13,7 @@
 	$result = $conn->query($sqlcommand) or die($conn->error);          
     $row = $result->fetch_assoc();
 
+//διαβάζω από τη μέθοδο get	τα στοιχεία των κυψελών
 	$id = ((int)$_GET['id']);
 	$location=$_GET["location"]; 
 	$muncipality=$_GET["muncipality"]; 
@@ -19,6 +21,7 @@
 	$plithos=((int)$_GET["plithos"]); 
 	$info=$_GET["info"]; 
 	
+// αν έγινε κλήση της post αντιγράφω τα στοιχεία τοπικά
 	if (isset($_POST["submit"])) {
 	//echo '<p>My second message has been sent!</p>';				 
 		
@@ -28,7 +31,7 @@
 		$plithos = $_POST['plithos'];
 		$info = $_POST['info'];
 		$human = $_POST['human'];		
-		
+		//αν όλα τα πεδία γεμάτα έλεγχος anti spam 
 		if ($location != '' && $muncipality != '' && $area != '' && $plithos != '' ) {
 		  if ($human == '2') {
 			$sql = "update beehive set  location='$location', muncipality='$muncipality',area ='$area', plithos_kipselwn=$plithos,info='$info'  where id=$id";
@@ -47,11 +50,11 @@
 			$conn->close();
 			header('location:user.php');
 		
-		  } else  {
+		  } else  { //λάθος anti spam
 			echo '<p>You answered the anti-spam question incorrectly!</p>';
 		  }
 		
-		} else {
+		} else { //υπάρχουν πεδία άδεια 
 				echo '<p>You need to fill in all required fields!!</p>';
 		}	
 		 
@@ -61,14 +64,14 @@
 ?>
 
 <!DOCTYPE html>
-<!<meta charset="UTF-8">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<!-- για responsive design -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <html>
 <head>
     <title>Dashboard for Users Bee Hives</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-	<link type="text/css" rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/button.css">
 
 <script>
@@ -122,6 +125,7 @@
 
     <div>
 	<?php
+	//εμφάνισε τα στοιχεία που έχω γράψει στη μεταβλητή response
         if (! empty($response)) {
             ?>
         <div id="response" class="<?php echo $response["type"]; ?>"><?php echo $response["message"]; ?></div>

@@ -1,9 +1,10 @@
 <?php 
+// ξεκίνα το session του τρέχοντος χρήστη
 	session_start();
-    
+// εισαγωγή στοιχείων σύνδεσης    
 	include("conf.php");    
 	$conn = new mysqli(HOST,USERNAME,DB_PWD,DATABASE);
-	
+//διαβάζω από τη μέθοδο session	τα στοιχεία σύνδεσης	
     $username = $_SESSION['username'];
 	$password = $_SESSION['password'];
 	
@@ -11,7 +12,8 @@
     $sqlcommand = "select * from users where username = '$username' and password= '$password'";
 	$result = $conn->query($sqlcommand) or die($conn->error);      
     $row = $result->fetch_assoc();
-	
+
+// διάβασε από τη βάση και θα αποθηκεύσει σε τοπικές μεταβλητές δεδομένα του χρήστη	
 	$fname = $row['first_name'];
 	$lname = $row['last_name'];
     $email = $row['email'];
@@ -29,6 +31,8 @@
 
 if (isset($_POST["submit"])) {
 	//echo '<p>My second message has been sent!</p>';
+
+// αν πατήθηκε το κουμπί και θέλει να εισάγει νέα δεδομένα για κυψέλες διαβάζει από την φόρμα τα δεδομένα
 
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
@@ -76,11 +80,12 @@ if (isset($_POST["submit"])) {
 ?>
 <!DOCTYPE html>
 <meta charset="UTF-8">
+<!-- για responsive design -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <html>
 <head>
     <title>Dashborad for BeeForecast users</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
 	<link type="text/css" rel="stylesheet" href="css/main.css">
 	<link type="text/css" rel="stylesheet" href="css/button.css">
 </head>

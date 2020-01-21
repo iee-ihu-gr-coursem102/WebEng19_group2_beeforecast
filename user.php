@@ -1,10 +1,11 @@
 <?php 
+// ξεκίνα το session του τρέχοντος χρήστη
 	session_start();
 //echo '<p>my first message has been sent!</p>';
-    
+// εισαγωγή στοιχείων σύνδεσης     
 	include("conf.php");    
 	$conn = new mysqli(HOST,USERNAME,DB_PWD,DATABASE);
-	
+//διαβάζω από τη μέθοδο session	τα στοιχεία σύνδεσης	
     $username = $_SESSION['username'];
 	$password = $_SESSION['password'];
 	
@@ -16,6 +17,7 @@
     $row = $result->fetch_assoc();
                                                       
 	$user_id = $row['id'];
+//με το id διαβάζω από τον πίνακα που έχει τις κυψέλες
 	$sqlcommand2 = "select * from beehive where user_id = '$user_id'";
 	$result2 = $conn->query($sqlcommand2) or die($conn->error);
 	$result3= $result2;
@@ -31,7 +33,7 @@
 	
 	if (isset($_POST["submit1"])) {
 		//echo '<p>My second message has been sent!</p>';
-
+// πατήθηκε το submit
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
 		$email = $_POST['email'];
@@ -63,14 +65,14 @@
 
 
 <!DOCTYPE html>
-<!<meta charset="UTF-8">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<!-- για responsive design -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <html>
 <head>
     <title>Dashborad for Bee Hives</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-	<link type="text/css" rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/button.css">
 
 <script>
