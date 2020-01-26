@@ -199,8 +199,17 @@
 						&muncipality=<?php echo $row3["muncipality"]; ?>
 						&area=<?php echo $row3["area"]; ?>
 						&plithos=<?php echo $row3["plithos_kipselwn"]; ?>
-						&info=<?php echo $row3["info"]; ?> ">Edit</a> </td>
-						<td><a href="delete_beehive.php?id=<?php echo $row3["id"]; ?>">Delete</a></td>
+						&info=<?php echo $row3["info"]; ?> ">Επεξεργασία</a> </td>
+						<td><a href="delete_beehive.php?id=<?php echo $row3["id"]; ?>">Διαγραφή</a></td>
+						
+						<!--Προσθήκη συνδέσμου για καιρό στην συγκεκριμένη τοποθεσία 
+						που αντιστοιχεί το location των κυψελών, στη σελίδα μας forecast.php -->
+						
+						<td><a href="forecast.php?location=<?php echo $row3["location"]; ?>
+						&muncipality=<?php echo $row3["muncipality"]; ?>">Καιρός</a> </td>
+						
+						
+						
 						<!--sending required information via url for get method -->
 					</tr>
 					<?php endwhile ?>

@@ -1,0 +1,33 @@
+--
+-- Table structure for table `users`
+--
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(8) NOT NULL AUTO_INCREMENT,
+  `username` varchar(55) NOT NULL,
+  `first_name` varchar(55) NOT NULL,
+  `last_name` varchar(55) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `email` varchar(55) NOT NULL,
+  `role` int NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+);
+--
+-- Table structure for table `beehive`
+--
+CREATE TABLE IF NOT EXISTS `beehive` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `location` varchar(55) NOT NULL,
+  `muncipality` varchar(55) NOT NULL,
+  `area` varchar(55) NOT NULL,
+  `user_id` int(8) NOT NULL,
+  `plithos_kipselwn` int(4) NOT NULL,
+  `info` varchar(55) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES users(`id`) 
+);
+
+--
+-- Administrator record
+--
+INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `password`, `email`, `role`) VALUES
+('1','admin','The', 'Administrator','202cb962ac59075b964b07152d234b70', 'admin@admin.gr','1');
