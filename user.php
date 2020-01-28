@@ -205,8 +205,11 @@
 						<!--Προσθήκη συνδέσμου για καιρό στην συγκεκριμένη τοποθεσία 
 						που αντιστοιχεί το location των κυψελών, στη σελίδα μας forecast.php -->
 						
+						<td><a href="current.php?location=<?php echo $row3["location"]; ?>
+						&muncipality=<?php echo $row3["muncipality"]; ?>">Τρέχων Καιρός</a> </td>
+						
 						<td><a href="forecast.php?location=<?php echo $row3["location"]; ?>
-						&muncipality=<?php echo $row3["muncipality"]; ?>">Καιρός</a> </td>
+						&muncipality=<?php echo $row3["muncipality"]; ?>">Πρόγνωση Καιρού</a> </td>
 						
 						
 						
