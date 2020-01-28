@@ -1,7 +1,5 @@
 # BeeForecast
 
-http://beeforecast.tk
-
 http://v1.beeforecast.tk/
 
 
